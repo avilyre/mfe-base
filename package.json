@@ -1,0 +1,31 @@
+{
+  "name": "microfrontends-letsmovie",
+  "version": "1.0.0",
+  "description": "The concept of micro-frontends in practice",
+  "authors": [
+    {
+      "name": "Avily Silva",
+      "email": "avilyre@gmail.com",
+      "url": "https://avilysilva.com"
+    }
+  ],
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --open",
+    "build": "webpack build --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.0",
+    "sass": "^1.77.6",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.92.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}
