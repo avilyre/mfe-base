@@ -31,6 +31,10 @@ module.exports = {
         }
       },
       {
+        test: /\.(png|svg)$/,
+        type: "asset/resource"
+      },
+      {
         test: /\.(css|scss)$/,
         exclude: /node_modules/,
         use: ["style-loader", "css-loader", "sass-loader"]
@@ -45,5 +49,5 @@ module.exports = {
   ],
   resolve: {
     extensions: [".js", ".ts", ".tsx"]
-  }
+  },
 }
