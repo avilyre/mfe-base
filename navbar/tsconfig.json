@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    "noImplicitAny": true,
+    "module": "ES2020",
+    "target": "ES5",
+    "lib": ["ES2015"],
+    "allowJs": true,
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true
+  }
+}
