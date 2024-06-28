@@ -3,11 +3,18 @@
   "version": "1.0.0",
   "description": "The concept of micro-frontends in practice",
   "license": "ISC",
+  "packageManager": "pnpm@8.15.4",
   "authors": [
     {
       "name": "Avily Silva",
       "email": "avilyre@gmail.com",
       "url": "https://avilysilva.com"
     }
-  ]
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.5"
+  }
 }

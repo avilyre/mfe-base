@@ -10,7 +10,7 @@ module.exports = {
   mode: "development",
   devServer: {
     static: path.resolve(__dirname, "public"),
-    port: 3000
+    port: 3002
   },
   module: {
     rules: [
