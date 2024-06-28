@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const { dependencies } = require("./package.json");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -45,6 +47,25 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
       favicon: path.resolve(__dirname, "public", "favicon.png")
+    }),
+    new ModuleFederationPlugin({
+      name: "NavbarApp",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./Navbar": "./src/app.tsx"
+      },
+      shared: {
+        react: {
+          eager: true,
+          singleton: true,
+          requiredVersion: dependencies["react"],
+        },
+        "react-dom": {
+          eager: true,
+          singleton: true,
+          requiredVersion: dependencies["react-dom"],
+        }
+      } 
     })
   ],
   resolve: {
