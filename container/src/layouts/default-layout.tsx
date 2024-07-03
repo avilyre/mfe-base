@@ -1,12 +1,13 @@
-import { SearchInput } from "../components/search-input";
 import "./styles.scss";
 
-import { Suspense, lazy } from "react";
+import { SearchInput } from "../components/SearchInput";
+
+import { ReactNode, Suspense, lazy } from "react";
 
 const Navbar = lazy(() => import("NavbarApp/Navbar"));
 
 interface DefaultLayoutProps {
-  children: JSX.Element;
+  children: ReactNode;
 }
 
 export const DefaultLayout = (props: DefaultLayoutProps) => {
