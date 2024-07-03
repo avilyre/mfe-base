@@ -30,6 +30,16 @@
 
     &::placeholder {
       color: $secondary-color;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:hover::placeholder {
+      transform: translateX(5px);
+    }
+
+    &:focus::placeholder {
+      transform: translateX(15px);
+      opacity: 0;
     }
   }
 }
