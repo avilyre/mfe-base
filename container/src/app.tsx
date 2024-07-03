@@ -1,22 +1,11 @@
-import "./styles/app.scss";
-
-import { Suspense, lazy } from "react";
-
-const Navbar = lazy(() => import("NavbarApp/Navbar"));
-
-import { SearchInput } from "./components/search-input";
+import { DefaultLayout } from "./layouts/default-layout";
 
 const App = () => {
   return (
     <body className="container">
-      <Suspense fallback={<div>loading navbar...</div>}>
-        <Navbar />
-      </Suspense>
-      
-      <main>
-        <SearchInput />
+      <DefaultLayout>
         <h1>Container</h1>
-      </main>
+      </DefaultLayout>
     </body>
   )
 }

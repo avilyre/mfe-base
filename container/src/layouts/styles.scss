@@ -1,0 +1,26 @@
+.default-layout-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  height: 100vh;
+  width: min(100%, 1425px);
+  margin: 0 auto;
+  
+  .default-layout-main-wrapper {
+    width: 100%;
+    padding-top: 1.25rem;
+
+    & main.default-layout-main-content-container {
+      flex: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .default-layout-container {
+    padding: 0 1.5rem;
+    .default-layout-main-wrapper {
+      padding-top: 1.5rem;
+    }
+  }
+}
