@@ -1,3 +1,5 @@
+import "./app.scss";
+
 import { Poster } from "./components/Poster";
 import { DefaultLayout } from "./layouts/default-layout";
 
@@ -5,7 +7,7 @@ const App = () => {
   return (
     <body className="container">
       <DefaultLayout>
-        <h1>Container</h1>
+        <h2 className="section-title">catálogo</h2>
         <Poster
           title="Kung fu panda 4"
           isFavorited={true}
