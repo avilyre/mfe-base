@@ -7,21 +7,21 @@ const App = () => {
   return (
     <aside className="aside-container">
       <nav className="navbar-container">
-        <img className="logo-image" src={logo} alt="" />
+        <img className="navbar-logo-image" src={logo} alt="" />
 
         <ul className="menu-list">
-          <li>
-            <a href="#">
+          <li className="menu-list-item">
+            <a className="menu-list-item-link" href="#">
               <HomeIcon />
             </a>
           </li>
-          <li>
-            <a href="#">
+          <li className="menu-list-item">
+            <a className="menu-list-item-link" href="#">
               <Star />
             </a>
           </li>
-          <li>
-            <a href="#">
+          <li className="menu-list-item">
+            <a className="menu-list-item-link" href="#">
               <Projector />
             </a>
           </li>

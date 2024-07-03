@@ -3,7 +3,7 @@
 .aside-container {
   display: inline-block;
   height: 100%;
-  
+
   .navbar-container {
     font-family: "Poppins", sans-serif;
 
@@ -11,6 +11,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    gap: 60px;
     height: 100%;
 
     max-width: 73px;
@@ -23,13 +24,12 @@
     .menu-list {
       display: flex;
       flex-direction: column;
-      margin-top: 60px;
     }
 
-    .menu-list li {
+    .menu-list li.menu-list-item {
       list-style: none;
 
-      a {
+      a.menu-list-item-link {
         display: block;
 
         padding: 0.6rem 1.375rem;
@@ -39,6 +39,41 @@
 
         &:hover {
           background-color: $tertiary-color;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .aside-container {
+    position: absolute;
+    top: calc((100% - 70px) - 24px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 70px;
+    padding: 0 1.375rem;
+    width: min(100%, 312px);
+    border-radius: 16px;
+
+    background: $body-background-color;
+
+    .navbar-container {
+      flex-direction: row;
+      justify-content: space-between;
+
+      .menu-list {
+        flex-direction: row;
+      }
+
+      .menu-list li.menu-list-item {
+        display: inline-block;
+
+        a.menu-list-item-link {
+          display: block;
+  
+          padding: 0.6rem 1rem;
         }
       }
     }
