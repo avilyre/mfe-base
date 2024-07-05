@@ -5,6 +5,7 @@
   height: 100vh;
   width: min(100%, 1125px);
   margin: 0 auto;
+  padding-right: 2rem;
   
   .default-layout-main-wrapper {
     width: 100%;
@@ -19,7 +20,7 @@
 
 @media screen and (max-width: 470px) {
   .default-layout-container {
-    padding: 0 1.5rem;
+    padding: 0 1rem 1.5rem 1rem;
     .default-layout-main-wrapper {
       padding-top: 1.5rem;
     }
