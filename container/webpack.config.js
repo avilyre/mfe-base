@@ -6,13 +6,15 @@ const { dependencies } = require ("./package.json");
 module.exports = {
   entry: "./src/index.tsx",
   output: {
+    publicPath: "/", // tha was used to fix the cannot get the url error
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist")
   },
   mode: "development",
   devServer: {
     static: path.resolve(__dirname, "public"),
-    port: 3002
+    port: 3002,
+    historyApiFallback: true // that was used to fix the cannot get the url error
   },
   module: {
     rules: [
