@@ -19,12 +19,12 @@ export const Poster = (props: PosterProps) => {
         backgroundImage: `url(${image.src})`
       }}
     >
-      <div className="poster-overlay">
+      <a href="#" className="poster-overlay">
         <button className={`poster-favorite-button ${isFavorited ? "active" : ""}`} type="button">
           <Star />
         </button>
-        <h3 className="poster-title">Kung fu panda 4</h3>
-      </div>
+        <h3 className="poster-title">{title}</h3>
+      </a>
     </article>
   )
 }

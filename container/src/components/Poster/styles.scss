@@ -1,10 +1,9 @@
 @import "../../styles/variables";
 
 .poster-container {
-  width: min(100%, 220px);
-  height: 315px;
   border-radius: 16px;
   overflow: hidden;
+  aspect-ratio: 2 / 3;
 
   background-size: cover;
   background-repeat: no-repeat;
@@ -36,6 +35,8 @@
     height: 100%;
     padding: 1rem;
 
+    text-decoration: none;
+
     .poster-favorite-button {
       width: fit-content;
       line-height: 0;
@@ -59,8 +60,6 @@
 
 @media screen and (max-width: 470px) {
   .poster-container {
-    height: 230px;
-    width: min(100%, 150px);
     .poster-title {
       font-size: 1rem;
     }
