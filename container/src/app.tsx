@@ -2,6 +2,7 @@ import "./app.scss";
 
 import { Poster } from "./components/Poster";
 import { DefaultLayout } from "./layouts/default-layout";
+import { Footer } from "./components/Footer";
 
 const App = () => {
   const numberOfPosters = 12;
@@ -21,6 +22,7 @@ const App = () => {
             />
           ))}
         </div>
+        <Footer />
       </DefaultLayout>
     </body>
   )

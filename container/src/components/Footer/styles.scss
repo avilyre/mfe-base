@@ -1,0 +1,39 @@
+@import "../../styles/variables";
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2.8125rem;
+  padding: 0 1rem;
+  min-height: 194px;
+  background-color: $body-background-color;
+
+  .footer-container-title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 120%;
+    color: $shape-color;
+
+    span {
+      color: $primary-color;
+    }
+  }
+
+  .footer-container-link {
+    display: inline-block;
+
+    font-size: 1rem;
+    font-weight: 700;
+    color: $shape-color;
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .footer-container {
+    min-height: 100px;
+    padding-bottom: 7rem;
+  }
+}
