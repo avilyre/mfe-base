@@ -2,18 +2,13 @@ import "./styles.scss";
 
 import { SearchInput } from "../components/SearchInput";
 
-import { ReactNode, Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { Footer } from "../components/Footer";
+import { Outlet } from "react-router-dom";
 
 const Navbar = lazy(() => import("NavbarApp/Navbar"));
 
-interface DefaultLayoutProps {
-  children: ReactNode;
-}
-
-export const DefaultLayout = (props: DefaultLayoutProps) => {
-  const { children } = props;
-
+export const DefaultLayout = () => {
   return (
     <div className="default-layout-container">
       <Suspense fallback={<div>loading navbar...</div>}>
@@ -22,7 +17,7 @@ export const DefaultLayout = (props: DefaultLayoutProps) => {
       <div className="default-layout-main-wrapper">
         <SearchInput />
         <main className="default-layout-main-content-container">
-          {children}
+          <Outlet />
         </main>
       <Footer />
       </div>

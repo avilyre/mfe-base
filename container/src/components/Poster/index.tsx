@@ -1,5 +1,6 @@
 import "./styles.scss";
 
+import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import { ComponentProps } from "react";
 
@@ -19,12 +20,12 @@ export const Poster = (props: PosterProps) => {
         backgroundImage: `url(${image.src})`
       }}
     >
-      <a href="#" className="poster-overlay">
+      <Link to="/movie/1" className="poster-overlay">
         <button className={`poster-favorite-button ${isFavorited ? "active" : ""}`} type="button">
           <Star />
         </button>
         <h3 className="poster-title">{title}</h3>
-      </a>
+      </Link>
     </article>
   )
 }
