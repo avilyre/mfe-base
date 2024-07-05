@@ -3,6 +3,7 @@ import "./styles.scss";
 import { SearchInput } from "../components/SearchInput";
 
 import { ReactNode, Suspense, lazy } from "react";
+import { Footer } from "../components/Footer";
 
 const Navbar = lazy(() => import("NavbarApp/Navbar"));
 
@@ -23,6 +24,7 @@ export const DefaultLayout = (props: DefaultLayoutProps) => {
         <main className="default-layout-main-content-container">
           {children}
         </main>
+      <Footer />
       </div>
     </div>
   )
