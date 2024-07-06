@@ -7,8 +7,11 @@ const HomePage = () => {
   const numberOfPosters = 12;
 
   return (
-    <Fragment>
-      <h2 className="section-title">catálogo</h2>
+    <section>
+      <header>
+        <h2 className="section-title">catálogo</h2>
+      </header>
+      
       <div className="section-posters-container">
         {Array.from({ length: numberOfPosters }).map(() => (
           <Poster
@@ -20,7 +23,7 @@ const HomePage = () => {
           />
         ))}
       </div>
-    </Fragment>
+    </section>
   )
 }
 
