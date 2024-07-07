@@ -1,1 +1,19 @@
 @import "../../styles/variables";
+
+.movie-details-container {
+  .go-back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+
+    height: 50px;
+    padding: 0 1rem;
+    border-radius: 8px;
+    background: $tertiary-color;
+
+    font-size: 1rem;
+    font-weight:  700;
+    color: $shape-color;
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+
+.rate-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+
+  .star {
+    color: $secondary-color;
+
+    &.rated {
+      color: $primary-color;
+    }
+  }
+}
