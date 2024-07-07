@@ -2,30 +2,52 @@ import "./styles.scss";
 
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
-import { ComponentProps } from "react";
+import { ComponentProps, Fragment, ReactNode } from "react";
 
-interface PosterProps {
-  title: string;
-  isFavorited: boolean;
-  image: ComponentProps<"img">;
+interface PosterProps extends ComponentProps<"article"> {
+  isViewOnly?: boolean;
+  data: {
+    id: number;
+    title: string;
+    isFavorited: boolean;
+    image: ComponentProps<"img">;
+  }
 }
 
 export const Poster = (props: PosterProps) => {
-  const { title, isFavorited, image } = props;
+  const {
+    data,
+    className,
+    style,
+    isViewOnly = false
+  } = props;
+
+  const OverlayTypeComponent = (children: ReactNode) => {
+    if (isViewOnly) return <div className="poster-overlay">{children}</div>
+
+    return (
+      <Link to={`/movie/${data.id}`} className="poster-overlay">
+        {children}
+      </Link>
+    )
+  }
 
   return (
     <article
-      className="poster-container"
+      className={`poster-container ${className} ${isViewOnly && "view-only"}`}
       style={{
-        backgroundImage: `url(${image.src})`
+        backgroundImage: `url(${data.image.src})`,
+        ...style
       }}
     >
-      <Link to="/movie/1" className="poster-overlay">
-        <button className={`poster-favorite-button ${isFavorited ? "active" : ""}`} type="button">
-          <Star />
-        </button>
-        <h3 className="poster-title">{title}</h3>
-      </Link>
+      {OverlayTypeComponent((
+        <Fragment>
+          <button className={`poster-favorite-button ${data.isFavorited && "active"}`} type="button">
+            <Star />
+          </button>
+          <h3 className="poster-title">{data.title}</h3>
+        </Fragment>
+      ))}
     </article>
   )
 }
