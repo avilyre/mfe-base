@@ -23,7 +23,7 @@ export const Poster = (props: PosterProps) => {
   } = props;
 
   const OverlayTypeComponent = (children: ReactNode) => {
-    if (isViewOnly) return <div className="poster-overlay">{children}</div>
+    if (isViewOnly) return <div>{children}</div>
 
     return (
       <Link to={`/movie/${data.id}`} className="poster-overlay">
@@ -40,7 +40,7 @@ export const Poster = (props: PosterProps) => {
         ...style
       }}
     >
-      {OverlayTypeComponent((
+      {OverlayTypeComponent(!isViewOnly && (
         <Fragment>
           <button className={`poster-favorite-button ${data.isFavorited && "active"}`} type="button">
             <Star />
