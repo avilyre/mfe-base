@@ -1,10 +1,20 @@
 import "./styles.scss";
 
+import { useEffect, useState } from "react";
+
 import { Poster } from "../../components/Poster";
-import { Fragment } from "react";
+import { getMovies } from "../../services/get-movies";
+import { Movie } from "../../@types/movie";
 
 const HomePage = () => {
-  const numberOfPosters = 12;
+  const [movies, setMovies] = useState<Movie[]>([]);
+
+  const loadMovies = async () => {
+    const result = await getMovies("/movie/popular");
+    setMovies(result);
+  }
+
+  useEffect(() => { loadMovies() }, []);
 
   return (
     <section>
@@ -13,14 +23,15 @@ const HomePage = () => {
       </header>
 
       <div className="section-posters-container">
-        {Array.from({ length: numberOfPosters }).map(() => (
+        {movies.map(movie => (
           <Poster
+            key={movie.id}
             data={{
-              id: 12312,
-              title: "Divertidamente 2",
+              id: movie.id,
+              title: movie.title,
               isFavorited: true,
               image: {
-                src: "https://image.tmdb.org/t/p/w500/9h2KgGXSmWigNTn3kQdEFFngj9i.jpg"
+                src: movie.poster_path
               }
             }}
           />

@@ -36,7 +36,7 @@ export const Poster = (props: PosterProps) => {
     <article
       className={`poster-container ${className} ${isViewOnly && "view-only"}`}
       style={{
-        backgroundImage: `url(${data.image.src})`,
+        backgroundImage: `url(https://image.tmdb.org/t/p/w500${data.image.src})`,
         ...style
       }}
     >
