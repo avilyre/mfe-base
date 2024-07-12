@@ -1,6 +1,10 @@
+import { StorageKey } from "../@types/storage-key";
 import { LocalStorageError } from "../@data/errors/local-storage-error";
+import { UseLocalStorageType } from "../@types/use-local-storage";
 
-export const useLocalStorage = <T>(key: string) => {
+export const useLocalStorage = <T>(props: UseLocalStorageType<T>) => {
+  const { key, defaultValue } = props;
+
   const setItem = (data: T) => {
     try {
       window.localStorage.setItem(key, JSON.stringify(data));
@@ -9,10 +13,10 @@ export const useLocalStorage = <T>(key: string) => {
     }
   }
 
-  const getItem = () => {
+  const getItem = (): T => {
     try {
       const result = window.localStorage.getItem(key);
-      return result ? JSON.parse(result) as T : undefined;
+      return result ? JSON.parse(result) as T : defaultValue;
     } catch {
       throw new LocalStorageError("Failed to GET data from localStorage");
     }

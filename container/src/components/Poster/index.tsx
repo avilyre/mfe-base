@@ -3,6 +3,7 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import { ComponentProps, Fragment, ReactNode } from "react";
+import { useFavorites } from "../../hooks/use-favorites";
 
 interface PosterProps extends ComponentProps<"article"> {
   isViewOnly?: boolean;
@@ -22,6 +23,8 @@ export const Poster = (props: PosterProps) => {
     isViewOnly = false
   } = props;
 
+  const { setFavorite, removeFavorite } = useFavorites();
+
   const OverlayTypeComponent = (children: ReactNode) => {
     if (isViewOnly) return <div>{children}</div>
 
@@ -31,6 +34,8 @@ export const Poster = (props: PosterProps) => {
       </Link>
     )
   }
+
+  const handleToggleFavorite = data.isFavorited ? removeFavorite : setFavorite;
 
   return (
     <article
@@ -42,7 +47,11 @@ export const Poster = (props: PosterProps) => {
     >
       {OverlayTypeComponent(!isViewOnly && (
         <Fragment>
-          <button className={`poster-favorite-button ${data.isFavorited && "active"}`} type="button">
+          <button
+            className={`poster-favorite-button ${data.isFavorited && "active"}`}
+            type="button"
+            onClick={() => handleToggleFavorite(String(data.id))}
+          >
             <Star />
           </button>
           <h3 className="poster-title">{data.title}</h3>
