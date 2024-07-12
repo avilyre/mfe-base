@@ -1,29 +1,43 @@
 import "./styles/app.scss";
 
+import { Link } from "react-router-dom";
 import { HomeIcon, Star, Projector } from "lucide-react";
+
 import logo from "./assets/logo.svg"
 
 const App = () => {
   return (
     <aside className="aside-container">
       <nav className="navbar-container">
-        <img className="navbar-logo-image" src={logo} alt="" />
+        <img className="navbar-logo-image" src={logo} alt="letra E com um ponto em azul" />
 
         <ul className="menu-list">
           <li className="menu-list-item">
-            <a className="menu-list-item-link" href="#">
+            <Link
+              title="início"
+              className="menu-list-item-link"
+              to="/"
+            >
               <HomeIcon />
-            </a>
+            </Link>
           </li>
           <li className="menu-list-item">
-            <a className="menu-list-item-link" href="#">
+            <Link
+              title="favoritos"
+              className="menu-list-item-link"
+              to="/favorites"
+            >
               <Star />
-            </a>
+            </Link>
           </li>
           <li className="menu-list-item">
-            <a className="menu-list-item-link" href="#">
+            <Link
+              title="em breve"
+              className="menu-list-item-link"
+              to="/soon"
+            >
               <Projector />
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
