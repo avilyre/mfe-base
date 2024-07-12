@@ -1,8 +1,6 @@
-import { Movie } from "./movie";
-
-export type ApiResponse = {
+export type ApiResponse<T> = {
   page: number;
-  results: Movie[];
+  results: T;
   total_pages: number;
   total_results: number;
 }

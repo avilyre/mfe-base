@@ -1,17 +1,35 @@
 import "./styles.scss";
 
 import { ChevronLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Rate } from "../../components/Rate";
 import { Poster } from "../../components/Poster";
+import { Fragment, useEffect, useState } from "react";
+import { getMovieDetails } from "../../services/get-movie-details";
+import { MovieDetails as MovieDetailsType } from "../../@types/movie-details";
 
 export const MovieDetails = () => {
+  
   const navigate = useNavigate();
-
-  const movieRate = 4;
+  const { id } = useParams();
+  
+  const [movie, setMovie] = useState<MovieDetailsType>({} as MovieDetailsType);
+  
+  const movieRate = (Number(movie.vote_average) / 10) * 5;
 
   const handleGoBack = () => navigate(-1);
+
+  const loadDetails = async () => {
+    const result = await getMovieDetails(id);
+    setMovie(result);
+  }
+
+  useEffect(() => { loadDetails() }, []);
+
+  const isMovieLoaded = Object.keys(movie).length > 0
+
+  if (!isMovieLoaded) return <p>loading movie...</p>
 
   return (
     <section className="movie-details-container">
@@ -24,30 +42,57 @@ export const MovieDetails = () => {
             isViewOnly
             data={{
               id: 12312,
-              title: "divertidamente 2",
+              title: movie.title,
               isFavorited: true,
               image: {
-                src: "https://image.tmdb.org/t/p/w500/9h2KgGXSmWigNTn3kQdEFFngj9i.jpg"
+                src: movie.poster_path
               }
             }}
           />
         </div>
 
         <div className="movie-details-info">
-          <h1 className="movie-details-title">divertidamente 2</h1>
+          <h1 className="movie-details-title">
+            {movie.title}
+          </h1>
           <Rate rate={movieRate} className="movie-details-rate" />
           <p>
             <span className="strong-text">gênero: </span>
-            ação, aventura, animação
+            {movie.genres.map((genre, index) => {
+              const isLastGenre = movie.genres.length === ++index
+
+              return (
+                <Fragment>
+                  <span key={genre.id}>{genre.name.toLowerCase()}</span>
+                  {isLastGenre === false && ", "}
+                </Fragment>
+                
+              );
+            })}
           </p>
           <p>
-            <span className="strong-text">produtora: </span> pixar
+            <span className="strong-text">produtora: </span>
+            {movie.production_companies.map((company, index) => {
+              const isLastCompany = movie.production_companies.length === ++index
+
+              return (
+                <Fragment>
+                  <span key={company.id}>{company.name}</span>
+                  {isLastCompany === false && ", "}
+                </Fragment>
+                
+              );
+            })}
             {" - "}
-            <span className="strong-text">ano: </span> <time dateTime="2024-01-01">2024</time>
+            <span className="strong-text">ano: </span> <time dateTime={movie.release_date}>
+              {new Date(movie.release_date).getFullYear()}
+            </time>
           </p>
 
           <p className="strong-text movie-details-description-title">descrição:{" "}</p>
-          <h2 className="movie-details-description">lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</h2>
+          <h2 className="movie-details-description">
+            {movie.overview.toLowerCase()}
+          </h2>
         </div>
       </article>
     </section>
