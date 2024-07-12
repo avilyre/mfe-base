@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import { StorageKey } from "../@types/storage-key";
 import { useLocalStorage } from "../hooks/use-local-storage";
 
@@ -9,7 +7,7 @@ export const useFavorites = () => {
     defaultValue: []
   });
 
-  const [favorites, setFavorites] = useState<string[]>(getItem());
+  const favorites = getItem();
 
   const setFavorite = (favoritedMovieId: string) => {
     const isAlreadyFavorited = favorites.some(favorited => favorited === favoritedMovieId);
