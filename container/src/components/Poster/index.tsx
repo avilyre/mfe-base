@@ -7,6 +7,7 @@ import { useFavorites } from "../../hooks/use-favorites";
 
 interface PosterProps extends ComponentProps<"article"> {
   isViewOnly?: boolean;
+  favoriteAction: (movieId: string) => void;
   data: {
     id: number;
     title: string;
@@ -20,10 +21,9 @@ export const Poster = (props: PosterProps) => {
     data,
     className,
     style,
-    isViewOnly = false
+    isViewOnly = false,
+    favoriteAction,
   } = props;
-
-  const { setFavorite, removeFavorite } = useFavorites();
 
   const OverlayTypeComponent = (children: ReactNode) => {
     if (isViewOnly) return <div>{children}</div>
@@ -33,7 +33,7 @@ export const Poster = (props: PosterProps) => {
         <button
           className={`poster-favorite-button ${data.isFavorited && "active"}`}
           type="button"
-          onClick={() => handleToggleFavorite(String(data.id))}
+          onClick={() => favoriteAction(String(data.id))}
         >
           <Star />
         </button>
@@ -43,8 +43,6 @@ export const Poster = (props: PosterProps) => {
       </div>
     )
   }
-
-  const handleToggleFavorite = data.isFavorited ? removeFavorite : setFavorite;
 
   return (
     <article

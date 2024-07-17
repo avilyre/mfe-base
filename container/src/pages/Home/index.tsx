@@ -9,14 +9,18 @@ import { useFavorites } from "../../hooks/use-favorites";
 
 const HomePage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const { favorites } = useFavorites();
+  const { favorites, favoriteAction } = useFavorites();
 
   const loadMovies = async () => {
     const result = await getMovies("/movie/popular");
     setMovies(result);
   }
 
-  useEffect(() => { loadMovies() }, []);
+  const effecLoadMovies = () => {
+    loadMovies();
+  }
+
+  useEffect(effecLoadMovies, []);
 
   return (
     <section>
@@ -31,6 +35,7 @@ const HomePage = () => {
           return (
             <Poster
               key={movie.id}
+              favoriteAction={favoriteAction}
               data={{
                 id: movie.id,
                 title: movie.title,

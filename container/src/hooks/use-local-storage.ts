@@ -1,4 +1,3 @@
-import { StorageKey } from "../@types/storage-key";
 import { LocalStorageError } from "../@data/errors/local-storage-error";
 import { UseLocalStorageType } from "../@types/use-local-storage";
 
