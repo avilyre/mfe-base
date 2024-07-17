@@ -10,7 +10,7 @@
   transition: all 0.2s ease;
 
   &:not(.view-only):hover {
-    transform: scale(1.05);
+    filter: brightness(120%);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
 
@@ -26,9 +26,7 @@
   }
 
   .poster-overlay {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    position: relative;
 
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 1));
 
@@ -37,7 +35,21 @@
 
     text-decoration: none;
 
+    .poster-overlay-link-area {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      text-decoration: none;
+
+      height: 100%;
+    }
+
     .poster-favorite-button {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+
       width: fit-content;
       line-height: 0;
       border-radius: 999px;

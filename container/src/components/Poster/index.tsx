@@ -29,9 +29,18 @@ export const Poster = (props: PosterProps) => {
     if (isViewOnly) return <div>{children}</div>
 
     return (
-      <Link to={`/movie/${data.id}`} className="poster-overlay">
-        {children}
-      </Link>
+      <div className="poster-overlay">
+        <button
+          className={`poster-favorite-button ${data.isFavorited && "active"}`}
+          type="button"
+          onClick={() => handleToggleFavorite(String(data.id))}
+        >
+          <Star />
+        </button>
+        <Link className="poster-overlay-link-area" to={`/movie/${data.id}`}>
+          {children}
+        </Link>
+      </div>
     )
   }
 
@@ -47,13 +56,6 @@ export const Poster = (props: PosterProps) => {
     >
       {OverlayTypeComponent(!isViewOnly && (
         <Fragment>
-          <button
-            className={`poster-favorite-button ${data.isFavorited && "active"}`}
-            type="button"
-            onClick={() => handleToggleFavorite(String(data.id))}
-          >
-            <Star />
-          </button>
           <h3 className="poster-title">{data.title}</h3>
         </Fragment>
       ))}
