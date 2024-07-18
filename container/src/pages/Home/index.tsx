@@ -1,15 +1,23 @@
 import "./styles.scss";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Poster } from "../../components/Poster";
 import { getMovies } from "../../services/get-movies";
 import { Movie } from "../../@types/movie";
 import { useFavorites } from "../../hooks/use-favorites";
+import { useOutletContext } from "react-router-dom";
 
 const HomePage = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [search] = useOutletContext<{ search: string }>();
+  
+  const isMoviesFilterEnabled = search.length > 0;
+
   const { favorites, favoriteAction } = useFavorites();
+  
+  const [movies, setMovies] = useState<Movie[]>([]);
+
+  const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase()))
 
   const loadMovies = async () => {
     const result = await getMovies("/movie/popular");
@@ -29,7 +37,7 @@ const HomePage = () => {
       </header>
 
       <div className="section-posters-container">
-        {movies.map(movie => {
+        {(isMoviesFilterEnabled ? filteredMovies : movies).map(movie => {
           const isFavorited = favorites.some(favorited => favorited === String(movie.id))
 
           return (
