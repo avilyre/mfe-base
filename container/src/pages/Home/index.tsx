@@ -7,10 +7,10 @@ import { getMovies } from "../../services/get-movies";
 import { Movie } from "../../@types/movie";
 import { useFavorites } from "../../hooks/use-favorites";
 import { useOutletContext } from "react-router-dom";
-import { OutletContentType } from "../../@types/outlet-context-type";
+import { OutletContextType } from "../../@types/outlet-context-type";
 
 const HomePage = () => {
-  const { search } = useOutletContext<OutletContentType>();
+  const { search } = useOutletContext<OutletContextType>();
   
   const isMoviesFilterEnabled = search.length > 0;
 

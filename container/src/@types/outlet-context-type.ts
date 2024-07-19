@@ -1,3 +1,3 @@
-export type OutletContentType = {
+export type OutletContextType = {
   search: string;
 }
