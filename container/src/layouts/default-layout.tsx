@@ -24,7 +24,7 @@ export const DefaultLayout = () => {
       <div className="default-layout-main-wrapper">
         <SearchInput onChange={handleSearchInput} />
         <main className="default-layout-main-content-container">
-          <Outlet context={[searchInput]} />
+          <Outlet context={{ search: searchInput }} />
         </main>
         <Footer />
       </div>
