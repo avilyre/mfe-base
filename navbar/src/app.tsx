@@ -1,6 +1,5 @@
 import "./styles/app.scss";
 
-import { Link } from "react-router-dom";
 import { HomeIcon, Star, Projector } from "lucide-react";
 
 import logo from "./assets/logo.svg"
@@ -13,31 +12,31 @@ const App = () => {
 
         <ul className="menu-list">
           <li className="menu-list-item">
-            <Link
+            <a
               title="início"
               className="menu-list-item-link"
-              to="/"
+              href="/"
             >
               <HomeIcon />
-            </Link>
+            </a>
           </li>
           <li className="menu-list-item">
-            <Link
+            <a
               title="favoritos"
               className="menu-list-item-link"
-              to="/favorites"
+              href="/favorites"
             >
               <Star />
-            </Link>
+            </a>
           </li>
           <li className="menu-list-item">
-            <Link
+            <a
               title="em breve"
               className="menu-list-item-link"
-              to="/soon"
+              href="/soon"
             >
               <Projector />
-            </Link>
+            </a>
           </li>
         </ul>
       </nav>

@@ -64,11 +64,6 @@ module.exports = {
           eager: true,
           singleton: true,
           requiredVersion: dependencies["react-dom"],
-        },
-        "react-router-dom": {
-          eager: true,
-          singleton: true,
-          requiredVersion: dependencies["react-dom"],
         }
       } 
     })
