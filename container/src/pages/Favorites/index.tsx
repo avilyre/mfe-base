@@ -1,3 +1,4 @@
+import { ApiRequestURL } from "../../@types/api-request-url";
 import { MoviesList } from "../../components/MoviesList";
 
 const Favorites = () => {
@@ -8,6 +9,7 @@ const Favorites = () => {
       </header>
 
       <MoviesList
+        requestFrom={ApiRequestURL.POPULAR}
         filterBy="favorites"
       />
     </section>

@@ -1,6 +1,7 @@
 import "./styles.scss";
 
 import { MoviesList } from "../../components/MoviesList";
+import { ApiRequestURL } from "../../@types/api-request-url";
 
 const HomePage = () => {
   return (
@@ -9,7 +10,7 @@ const HomePage = () => {
         <h2 className="section-title">catálogo</h2>
       </header>
 
-      <MoviesList />
+      <MoviesList requestFrom={ApiRequestURL.POPULAR} />
     </section>
   )
 }

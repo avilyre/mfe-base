@@ -8,13 +8,15 @@ import { Poster } from "../Poster";
 import { OutletContextType } from "../../@types/outlet-context-type";
 import { useFavorites } from "../../hooks/use-favorites";
 import { getMovies } from "../../services/get-movies";
+import { ApiRequestURL } from "../../@types/api-request-url";
 
 interface MoviesListProps {
+  requestFrom: ApiRequestURL;
   filterBy?: "favorites"
 }
 
 export const MoviesList = (props: MoviesListProps) => {
-  const { filterBy } = props;
+  const { filterBy, requestFrom } = props;
   
   const { search } = useOutletContext<OutletContextType>();
   const { favorites, favoriteAction } = useFavorites();
@@ -46,7 +48,7 @@ export const MoviesList = (props: MoviesListProps) => {
   }
 
   const loadMovies = async () => {
-    const result = await getMovies("/movie/popular");
+    const result = await getMovies(requestFrom);
     setFetchedMovies(result);
   }
 
