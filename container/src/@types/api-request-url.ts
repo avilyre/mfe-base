@@ -1,3 +1,4 @@
 export enum ApiRequestURL {
-  POPULAR = "/movie/popular"
+  POPULAR = "/movie/popular",
+  SOON = "/movie/upcoming"
 }

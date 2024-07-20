@@ -5,6 +5,7 @@ import { DefaultLayout } from "./layouts/default-layout";
 import HomePage from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
 import Favorites from "./pages/Favorites";
+import Soon from "./pages/Soon";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: "/favorites",
         element: <Favorites />
+      },
+      {
+        path: "/soon",
+        element: <Soon />
       }
     ]
   }
