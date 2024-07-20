@@ -4,6 +4,7 @@ import { DefaultLayout } from "./layouts/default-layout";
 
 import HomePage from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
+import Favorites from "./pages/Favorites";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "/movie/:id",
         element: <MovieDetails />
+      },
+      {
+        path: "/favorites",
+        element: <Favorites />
       }
     ]
   }

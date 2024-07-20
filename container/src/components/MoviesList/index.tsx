@@ -9,20 +9,45 @@ import { OutletContextType } from "../../@types/outlet-context-type";
 import { useFavorites } from "../../hooks/use-favorites";
 import { getMovies } from "../../services/get-movies";
 
-interface MoviesListProps {}
+interface MoviesListProps {
+  filterBy?: "favorites"
+}
 
 export const MoviesList = (props: MoviesListProps) => {
-  const { search } = useOutletContext<OutletContextType>();
+  const { filterBy } = props;
   
-  const isMoviesFilterEnabled = search.length > 0;
-
+  const { search } = useOutletContext<OutletContextType>();
   const { favorites, favoriteAction } = useFavorites();
   
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [fetchedMovies, setFetchedMovies] = useState<Movie[]>([]);
+  
+  const isSearching = search.length > 0;
+
+  const moviesData = () => {
+    let moviesList: Movie[];
+
+    if (isSearching) {
+      moviesList = fetchedMovies.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase()));
+      return moviesList;
+    }
+
+    switch (filterBy) {
+      case "favorites":
+        moviesList = fetchedMovies.filter(movie => {
+          const isFavoritedMovie = favorites.indexOf(String(movie.id)) > -1;
+          if (isFavoritedMovie) return movie;
+        })
+      break;
+      default:
+        moviesList = fetchedMovies;
+    }
+
+    return moviesList;
+  }
 
   const loadMovies = async () => {
     const result = await getMovies("/movie/popular");
-    setMovies(result);
+    setFetchedMovies(result);
   }
 
   const effecLoadMovies = () => {
@@ -31,11 +56,11 @@ export const MoviesList = (props: MoviesListProps) => {
 
   useEffect(effecLoadMovies, []);
 
-  const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase()));
+  const movies = moviesData();
 
   return (
     <div className="posters-container">
-      {(isMoviesFilterEnabled ? filteredMovies : movies).map(movie => {
+      {(movies).map(movie => {
         const isFavorited = favorites.some(favorited => favorited === String(movie.id))
 
         return (
