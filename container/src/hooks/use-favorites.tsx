@@ -4,21 +4,21 @@ import { useLocalStorage } from "../hooks/use-local-storage";
 
 export const useFavorites = () => {
   const { getItem, setItem } = useLocalStorage<string[]>({
-    key: StorageKey.FAVORITED_MOVIES,
+    key: StorageKey.FAVORITE_MOVIES,
     defaultValue: []
   });
 
   const [favorites, setFavorites] = useState<string[]>(() => getItem());
 
-  const favoriteAction = (favoritedMovieId: string) => {
-    const isAlreadyFavorited = favorites.some(favorited => favorited === favoritedMovieId);
+  const favoriteAction = (favoriteMovieId: string) => {
+    const isAlreadyFavorite = favorites.some(favorite => favorite === favoriteMovieId);
 
-    if (isAlreadyFavorited) {
-      return setFavorites(() => favorites.filter(favorited => favorited !== favoritedMovieId));
+    if (isAlreadyFavorite) {
+      return setFavorites(() => favorites.filter(favorite => favorite !== favoriteMovieId));
     };
 
-    const favoritedMoviesUpdatedWithNewOne = [...favorites, favoritedMovieId];
-    setFavorites(favoritedMoviesUpdatedWithNewOne);
+    const favoriteMoviesUpdatedWithNewOne = [...favorites, favoriteMovieId];
+    setFavorites(favoriteMoviesUpdatedWithNewOne);
   }
 
   const effectSaveToLocalStorage = () => {

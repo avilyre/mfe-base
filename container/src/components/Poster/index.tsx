@@ -7,11 +7,11 @@ import { useFavorites } from "../../hooks/use-favorites";
 
 interface PosterProps extends ComponentProps<"article"> {
   isViewOnly?: boolean;
-  favoriteAction: (movieId: string) => void;
+  favoriteAction?: (movieId: string) => void;
   data: {
     id: number;
     title: string;
-    isFavorited: boolean;
+    isFavorite: boolean;
     image: ComponentProps<"img">;
   }
 }
@@ -31,7 +31,7 @@ export const Poster = (props: PosterProps) => {
     return (
       <div className="poster-overlay">
         <button
-          className={`poster-favorite-button ${data.isFavorited && "active"}`}
+          className={`poster-favorite-button ${data.isFavorite && "active"}`}
           type="button"
           onClick={() => favoriteAction(String(data.id))}
         >
