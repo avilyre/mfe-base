@@ -6,7 +6,8 @@
     },
     "build": {
       "outputs": [
-        "dist/**"
+        "container/dist/**",
+        "navbar/dist/**"
       ],
       "dependsOn": [
         "^build"
