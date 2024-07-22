@@ -6,8 +6,8 @@ const { dependencies } = require("./package.json");
 module.exports = {
   entry: "./src/index.tsx",
   output: {
-    filename: "navbar-bundle.js",
-    path: path.resolve("..", "dist"),
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist")
   },
   mode: "development",
   devServer: {
