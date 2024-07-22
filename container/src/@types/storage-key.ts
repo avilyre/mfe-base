@@ -1,3 +1,3 @@
 export enum StorageKey {
-  FAVORITE_MOVIES = "@letsmovie:favorite-movies"
+  FAVORITED_MOVIES = "@letsmovie:favorited-movies"
 };

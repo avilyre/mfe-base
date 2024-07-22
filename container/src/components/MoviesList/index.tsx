@@ -36,8 +36,8 @@ export const MoviesList = (props: MoviesListProps) => {
     switch (filterBy) {
       case "favorites":
         moviesList = fetchedMovies.filter(movie => {
-          const isFavoriteMovie = favorites.indexOf(String(movie.id)) > -1;
-          if (isFavoriteMovie) return movie;
+          const isFavoritedMovie = favorites.indexOf(String(movie.id)) > -1;
+          if (isFavoritedMovie) return movie;
         })
       break;
       default:
@@ -52,18 +52,18 @@ export const MoviesList = (props: MoviesListProps) => {
     setFetchedMovies(result);
   }
 
-  const effectLoadMovies = () => {
+  const effecLoadMovies = () => {
     loadMovies();
   }
 
-  useEffect(effectLoadMovies, []);
+  useEffect(effecLoadMovies, []);
 
   const movies = moviesData();
 
   return (
     <div className="posters-container">
       {(movies).map(movie => {
-        const isFavorite = favorites.some(favorite => favorite === String(movie.id))
+        const isFavorited = favorites.some(favorited => favorited === String(movie.id))
 
         return (
           <Poster
@@ -72,7 +72,7 @@ export const MoviesList = (props: MoviesListProps) => {
             data={{
               id: movie.id,
               title: movie.title,
-              isFavorite,
+              isFavorited: isFavorited,
               image: {
                 src: movie.poster_path
               }

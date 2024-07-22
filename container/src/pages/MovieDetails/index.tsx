@@ -43,7 +43,7 @@ export const MovieDetails = () => {
             data={{
               id: 12312,
               title: movie.title,
-              isFavorite: true,
+              isFavorited: true,
               image: {
                 src: movie.poster_path
               }
