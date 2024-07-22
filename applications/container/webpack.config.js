@@ -1,8 +1,9 @@
 const path = require("path");
+const Webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const Dotenv = require("dotenv-webpack");
 const { dependencies } = require ("./package.json");
+const dotenv = require("dotenv");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -48,7 +49,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new Dotenv(),
+    new Webpack.DefinePlugin({
+      "process.env": JSON.stringify(dotenv.config().parsed)
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
       favicon: path.resolve(__dirname, "public", "favicon.png")
@@ -56,7 +59,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "lestsmovieContainer",
       remotes: {
-        NavbarApp: "NavbarApp@http://localhost:3001/remoteEntry.js",
+        NavbarApp: process.env.NAVBAR_REMOTE_URL,
       },
       shared: {
         react: {
