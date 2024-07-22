@@ -6,8 +6,8 @@
     },
     "build": {
       "outputs": [
-        "container/dist/**",
-        "navbar/dist/**"
+        "./applications/container/dist/**",
+        "./applications/navbar/dist/**"
       ],
       "dependsOn": [
         "^build"
