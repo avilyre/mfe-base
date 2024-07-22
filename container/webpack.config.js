@@ -8,8 +8,8 @@ module.exports = {
   entry: "./src/index.tsx",
   output: {
     publicPath: "/", // tha was used to fix the cannot get the url error
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist")
+    filename: "container-bundle.js",
+    path: path.resolve("...", "dist")
   },
   mode: "development",
   devServer: {
