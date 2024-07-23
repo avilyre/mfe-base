@@ -3,7 +3,7 @@ const Webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const { dependencies } = require ("./package.json");
-const dotenv = require("dotenv");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -12,7 +12,7 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist")
   },
-  mode: "development",
+  mode: "production",
   devServer: {
     static: path.resolve(__dirname, "public"),
     port: 3002,
@@ -49,9 +49,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new Webpack.DefinePlugin({
-      "process.env": JSON.stringify(dotenv.config().parsed)
-    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
       favicon: path.resolve(__dirname, "public", "favicon.png")
@@ -59,7 +56,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "lestsmovieContainer",
       remotes: {
-        NavbarApp: process.env.NAVBAR_REMOTE_URL,
+        NavbarApp: "NavbarApp@https://letsmovie-navbar.vercel.app/remoteEntry.js",
       },
       shared: {
         react: {
@@ -73,7 +70,8 @@ module.exports = {
           requiredVersion: dependencies["react-dom"],
         }
       }
-    })
+    }),
+    new Dotenv()
   ],
   resolve: {
     extensions: [".js", ".ts", ".tsx"]

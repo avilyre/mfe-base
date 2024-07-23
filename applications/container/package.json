@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --open",
-    "build": "webpack build --mode production",
+    "dev": "webpack serve --open --config webpack.dev.js",
+    "build": "webpack build --config webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "ISC",
